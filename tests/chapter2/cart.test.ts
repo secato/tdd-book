@@ -1,5 +1,5 @@
-import Product from '../src/Product';
-import Cart from '../src/Cart';
+import Product from '../../src/chapter2/Product';
+import Cart from '../../src/chapter2/Cart';
 
 let cart;
 

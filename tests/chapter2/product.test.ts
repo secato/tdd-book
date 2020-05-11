@@ -1,4 +1,4 @@
-import Product from '../src/Product';
+import Product from '../../src/chapter2/Product';
 
 let product: Product;
 
