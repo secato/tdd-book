@@ -1,21 +1,22 @@
 import Order from './Order';
 import Invoice from './Invoice';
-import InvoiceDao from './InvoiceDao';
-import SAP from './SAP';
+
+import { ActionAfterInvoiceGeneration } from './InvoicePostGenerateAction';
 
 export default class InvoiceGenerator {
-  private dao: InvoiceDao;
-  private sap: SAP;
+  private actions: ActionAfterInvoiceGeneration[];
 
-  constructor(invoiceDao: InvoiceDao, sap: SAP) {
-    this.dao = invoiceDao;
-    this.sap = sap;
+  constructor(...actions: ActionAfterInvoiceGeneration[]) {
+    this.actions =  actions
   }
 
   public generate(order: Order): Invoice {
     const invoice = new Invoice(order.client, order.total * 0.94, new Date());
-    this.dao.persist(invoice);
-    this.sap.send(invoice);
+
+    for (const action of this.actions) {
+      action.run(invoice)
+    }
+
     return invoice;
   }
 }
