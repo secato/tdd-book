@@ -2,8 +2,8 @@ import Product from './Product';
 import Cart from './Cart';
 
 export default class MajorMinor {
-  private _minor: Product;
-  private _major: Product;
+  private _minor?: Product;
+  private _major?: Product;
 
   finds(cart: Cart) {
     for (const product of cart.getProducts()) {

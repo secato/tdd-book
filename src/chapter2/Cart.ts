@@ -11,7 +11,7 @@ export default class Cart {
     return this.products.push(product);
   }
 
-  getProduct(name: string): Product {
+  getProduct(name: string): Product | null {
     return this.products.find((product) => product.name === name) || null;
   }
 
